@@ -1,0 +1,2 @@
+const http=require('http'),fs=require('fs'),path=require('path');const base=__dirname;http.createServer((req,res)=>{let p=path.join(base,decodeURIComponent(req.url.split('?')[0]));if(req.url==='/')p=path.join(base,'index.html');if(!p.startsWith(base)){res.writeHead(403).end();return}fs.readFile(p,(e,b)=>{if(e){res.writeHead(404).end();return}res.setHeader('Content-Type',p.endsWith('.js')?'text/javascript':p.endsWith('.html')?'text/html':'application/octet-stream');res.end(b)})}).listen(8766,'127.0.0.1',()=>console.log('http://127.0.0.1:8766'));
+
